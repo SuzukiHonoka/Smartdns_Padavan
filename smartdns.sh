@@ -1,4 +1,6 @@
 #!/bin/sh
+# Github: https://github.com/SuzukiHonoka
+# Made by starx.
 SRC_NAME="smartdns"
 DIR_BIN="/usr/bin"
 STORAGE_DIR="/etc/storage/$SRC_NAME"
