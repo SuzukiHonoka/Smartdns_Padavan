@@ -41,13 +41,14 @@ server-tcp 114.114.115.115
 server-tcp 180.76.76.76
 EOF
 func_save
+logger -t $SRC_NAME "Configuration written"
 fi
 if [ -n "`pidof $SRC_NAME`" ];then
 func_stop
-logger -t $SRC_NAME "Already running, killed."
+logger -t $SRC_NAME "Already running, killed"
 fi
 $BIN_PATH -f -c $CONF_PATH &> /dev/null &
-logger -t $SRC_NAME "Started."
+logger -t $SRC_NAME "Started"
 }
 
 func_stop(){
@@ -74,6 +75,7 @@ logger -t $SRC_NAME "iptables cleaned."
 }
 
 func_dnsmasq(){
+func_doff
 cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
 no-resolv
 server=127.0.0.1#5354
@@ -98,7 +100,7 @@ case $ARG2 in
 		func_iptables
 		;;
 	*)
-		echo "What the hell are you doing?"
+		echo "Please specify the setup method"
 		;;
 esac
 }
@@ -112,7 +114,7 @@ func_destory(){
 			func_doff
 			;;
 		*)
-			echo "What did you think you are?"
+			echo "Please specify the setup method"
 			;;		
 	esac
 }
